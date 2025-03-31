@@ -14,10 +14,23 @@ export class ApiClientService {
     constructor(private http: HttpClient) {}
 
     // Lists
+    createTodoList(name: string): Observable<ITodoList> {
+        const url = `${this.baseUrl}/todolists`;
+        const body = { name };
+
+        return this.http.post<ITodoList>(url, body);
+    }
+
     getTodoLists(): Observable<ITodoList[]> {
         const url = `${this.baseUrl}/todolists`;
         
         return this.http.get<ITodoList[]>(url);
+    }
+
+    deleteTodoList(id: number): Observable<void> {
+        const url = `${this.baseUrl}/todolists/${id}`;
+        
+        return this.http.delete<void>(url);
     }
 
     // Items
