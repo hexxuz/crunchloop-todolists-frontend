@@ -42,6 +42,10 @@
                     <button class="btn btn-sm btn-primary">
                         Create
                     </button>
+
+                    <button class="btn btn-sm btn-danger" *ngIf="list.items?.length" (click)="manageBulkDelete(id)">
+                        Delete all
+                    </button>
                 </div>
 
                 <div class="row my-3 d-flex justify-content-center" *ngIf="list.items?.length">

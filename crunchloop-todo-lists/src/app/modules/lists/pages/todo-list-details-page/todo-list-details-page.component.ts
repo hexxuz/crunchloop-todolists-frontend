@@ -66,4 +66,16 @@ export class TodoListDetailsPageComponent {
       this.retrieveItems(this.list.id);
     })
   }
+
+  manageBulkDelete(id: number){
+    if (!confirm('Are you sure you want to proceed?'))
+      return;
+
+    this.loading = true;
+
+    this.apiClientService.deleteTodoItemsBulk(id).subscribe(() => {
+      alert('Elements are being deleted...');
+      this.loading = false;
+    }, err => this.loading = false);
+  }
 }

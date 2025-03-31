@@ -51,4 +51,10 @@ export class ApiClientService {
         
         return this.http.delete<void>(url);
     }
+
+    deleteTodoItemsBulk(listId: number): Observable<void> {
+        const url = `${this.baseUrl}/todolists/${listId}/todoitems/bulkdelete`;
+
+        return this.http.delete<void>(url);
+    }
 }
