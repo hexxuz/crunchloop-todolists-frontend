@@ -1,0 +1,35 @@
+<p *ngIf="loading">Loading...</p>
+
+<div class="col-12 my-3" *ngIf="!loading && lists">
+    <h1 class="text-center">Todo lists</h1>
+    <table class="table border">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let list of lists">
+                <td>{{ list.id }}</td>
+                <td>{{ list.name }}</td>
+                <td class="text-end">
+                    <a [routerLink]="['/' + list.id]">
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </a>
+
+                    <a [routerLink]="['/' + list.id]">
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p *ngIf="!loading && !lists">There aren't lists to show.</p>
