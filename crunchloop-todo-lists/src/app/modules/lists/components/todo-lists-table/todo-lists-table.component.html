@@ -1,0 +1,30 @@
+<p *ngIf="!lists">There aren't items to show.</p>
+
+<div *ngIf="lists?.length"></div>
+
+<table class="table border">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th class="text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of lists">
+            <td>{{ list.id }}</td>
+            <td>{{ list.name }}</td>
+            <td class="text-end">
+                <a [routerLink]="['/' + list.id]">
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </a>
+
+                <button class="btn btn-outline-primary btn-sm" (click)="onDeleteClick(list.id)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

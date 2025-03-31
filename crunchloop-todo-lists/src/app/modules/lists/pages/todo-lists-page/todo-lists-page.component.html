@@ -1,35 +1,28 @@
-<p *ngIf="loading">Loading...</p>
+<div class="row w-100 mx-0">
+    <h1 class="text-center">ToDo Lists</h1>
+    <hr />
 
-<div class="col-12 my-3" *ngIf="!loading && lists">
-    <h1 class="text-center">Todo lists</h1>
-    <table class="table border">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th class="text-end">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let list of lists">
-                <td>{{ list.id }}</td>
-                <td>{{ list.name }}</td>
-                <td class="text-end">
-                    <a [routerLink]="['/' + list.id]">
-                        <button class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-eye"></i>
-                        </button>
-                    </a>
+    <p *ngIf="loading">Loading...</p>
 
-                    <a [routerLink]="['/' + list.id]">
-                        <button class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div *ngIf="!loading">
+        <div class="col-12 text-end mb-1">
+            <a [routerLink]="['/create']">
+                <button 
+                    class="btn btn-sm" 
+                    [ngClass]="showCreationForm ? 'btn-secondary' : 'btn-primary'" 
+                    (click)="showCreationForm = !showCreationForm"
+                >
+                    <span>{{ showCreationForm ? 'Cancel' : 'Create' }}</span>
+                </button>
+            </a>
+        </div>
+
+        <app-todo-lists-table 
+            *ngIf="!showCreationForm && lists" 
+            (onDelete)="manageDeleteEvent($event)"
+            [lists]="lists" 
+            class="col-12" 
+        />    
+        <app-todo-list-creation-form *ngIf="showCreationForm" (onCreationSubmit)="manageCreateListEvent($event)" />
+    </div>
 </div>
-
-<p *ngIf="!loading && !lists">There aren't lists to show.</p>
