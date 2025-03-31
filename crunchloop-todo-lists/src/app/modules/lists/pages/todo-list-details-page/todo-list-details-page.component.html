@@ -1,5 +1,8 @@
 <div class="row w-100 mx-0">
-    <div class="col-12 text-right my-1 mb-2">
+    <h1 class="text-center">List details</h1>
+    <hr />
+    
+    <div class="col-12 text-right">
         <a [routerLink]="['../']">
             <button class="btn btn-secondary btn-sm">
                 <i class="bi bi-chevron-left"></i>
@@ -7,8 +10,6 @@
             </button>
         </a>
     </div>
-
-    <h1 class="text-center">List details</h1>
 
     <p *ngIf="loading">Loading...</p>
 
@@ -37,9 +38,24 @@
             <div class="col-12">
                 <h3 class="text-center">Items</h3>
 
-                <div class="row">
-
+                <div class="col-12 text-end">
+                    <button class="btn btn-sm btn-primary">
+                        Create
+                    </button>
                 </div>
+
+                <div class="row my-3 d-flex justify-content-center" *ngIf="list.items?.length">
+                    <app-todo-item-card 
+                        *ngFor="let item of list.items" 
+                        [item]="item" 
+                        class="col-sm-6 col-md-4 col-lg-3" 
+                        (onNameChange)="manageItemNameChange($event)"
+                        (onCompletionStatusChange)="manageItemCompletionStatusChange($event)"
+                        (onDelete)="manageOnDelete(item.id)"
+                    />
+                </div>
+
+                <p *ngIf="!list.items?.length" class="text-center">The list doesn't have items yet.</p>
             </div>
         </div>
     </div>

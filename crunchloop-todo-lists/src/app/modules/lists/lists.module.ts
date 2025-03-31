@@ -7,6 +7,7 @@ import { TodoListsTableComponent } from './components/todo-lists-table/todo-list
 import { TodoListCreationFormComponent } from './components/todo-list-creation-form/todo-list-creation-form.component';
 import { FormsModule } from '@angular/forms';
 import { TodoListDetailsPageComponent } from './pages/todo-list-details-page/todo-list-details-page.component';
+import { ItemsModule } from '../items/items.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TodoListDetailsPageComponent } from './pages/todo-list-details-page/tod
   imports: [
     CommonModule,
     FormsModule,
+    ItemsModule,
     ListsRoutingModule
   ],
   exports: [

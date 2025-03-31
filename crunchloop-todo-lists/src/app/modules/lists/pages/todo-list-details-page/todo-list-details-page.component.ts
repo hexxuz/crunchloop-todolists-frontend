@@ -26,6 +26,11 @@ export class TodoListDetailsPageComponent {
 
     this.id = id;
 
+    this.retrieveItems(id);
+  }
+
+  retrieveItems(id: number){
+    this.loading = true;
     this.apiClientService.getTodoList(id).subscribe(list => {
       if (!list){
         this.loading = false;
@@ -33,7 +38,32 @@ export class TodoListDetailsPageComponent {
       }
 
       this.list = list;
-      this.loading = false;
+
+      this.apiClientService.getTodoItems(list.id).subscribe(items => {
+        list.items = items;
+
+        this.loading = false;
+      }, err => this.loading = false)
     }, err => this.loading = false);
+  }
+
+  manageItemNameChange($event: string){
+    if (!$event)
+      return;
+  }
+
+  manageItemCompletionStatusChange($event: boolean){
+  }
+
+  manageOnDelete($event: number){
+    if (!$event || isNaN($event) || !this.list)
+      return;
+
+    this.apiClientService.deleteTodoItem(this.list.id, $event).subscribe(res => {
+      if (!this.list)
+        return;
+
+      this.retrieveItems(this.list.id);
+    })
   }
 }

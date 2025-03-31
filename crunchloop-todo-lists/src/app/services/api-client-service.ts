@@ -20,11 +20,13 @@ export class ApiClientService {
 
         return this.http.post<ITodoList>(url, body);
     }
+
     getTodoList(id: number): Observable<ITodoList> {
         const url = `${this.baseUrl}/todolists/${id}`;
         
         return this.http.get<ITodoList>(url);
     }
+
     getTodoLists(): Observable<ITodoList[]> {
         const url = `${this.baseUrl}/todolists`;
         
@@ -42,5 +44,11 @@ export class ApiClientService {
         const url = `${this.baseUrl}/todolists/${listId}/todoitems`;
         
         return this.http.get<ITodoListItem[]>(url);
+    }
+
+    deleteTodoItem(listId: number, itemId: number): Observable<void> {
+        const url = `${this.baseUrl}/todolists/${listId}/todoitems/${itemId}`;
+        
+        return this.http.delete<void>(url);
     }
 }

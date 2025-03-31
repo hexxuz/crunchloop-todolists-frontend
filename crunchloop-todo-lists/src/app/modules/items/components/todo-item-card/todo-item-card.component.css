@@ -1,0 +1,7 @@
+.completed {
+    background-color: rgb(176, 236, 176);
+}
+
+.pending {
+    background-color: rgb(167, 85, 109);
+}
