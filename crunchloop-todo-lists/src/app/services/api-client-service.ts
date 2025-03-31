@@ -57,4 +57,11 @@ export class ApiClientService {
 
         return this.http.delete<void>(url);
     }
+
+    createTodoItemsBulk(listId: number): Observable<ITodoList> {
+        const url = `${this.baseUrl}/todolists/${listId}/todoitems/bulkcreation`;
+        const body = { };
+
+        return this.http.post<ITodoList>(url, body);
+    }
 }

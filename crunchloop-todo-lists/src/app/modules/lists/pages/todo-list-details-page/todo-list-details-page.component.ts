@@ -78,4 +78,16 @@ export class TodoListDetailsPageComponent {
       this.loading = false;
     }, err => this.loading = false);
   }
+
+  manageBulkCreation(id: number){
+    if (!confirm('Are you sure you want to bulk create items?'))
+      return;
+
+    this.loading = true;
+
+    this.apiClientService.createTodoItemsBulk(id).subscribe(() => {
+      this.loading = false;
+      this.retrieveItems(id);
+    }, err => this.loading = false);
+  }
 }

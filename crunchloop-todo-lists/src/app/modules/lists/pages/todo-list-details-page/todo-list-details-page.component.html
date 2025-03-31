@@ -38,12 +38,16 @@
             <div class="col-12">
                 <h3 class="text-center">Items</h3>
 
-                <div class="col-12 text-end">
-                    <button class="btn btn-sm btn-primary">
+                <div class="col-12 text-end" *ngIf="id">
+                    <!-- <button class="btn btn-sm btn-primary" [disabled]="loading">
                         Create
+                    </button> -->
+
+                    <button class="btn btn-sm btn-primary" (click)="manageBulkCreation(id)" [disabled]="loading">
+                        Create bulk
                     </button>
 
-                    <button class="btn btn-sm btn-danger" *ngIf="list.items?.length" (click)="manageBulkDelete(id)">
+                    <button class="btn btn-sm btn-danger" *ngIf="list.items?.length" (click)="manageBulkDelete(id)" [disabled]="loading">
                         Delete all
                     </button>
                 </div>
