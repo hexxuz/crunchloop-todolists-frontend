@@ -20,7 +20,11 @@ export class ApiClientService {
 
         return this.http.post<ITodoList>(url, body);
     }
-
+    getTodoList(id: number): Observable<ITodoList> {
+        const url = `${this.baseUrl}/todolists/${id}`;
+        
+        return this.http.get<ITodoList>(url);
+    }
     getTodoLists(): Observable<ITodoList[]> {
         const url = `${this.baseUrl}/todolists`;
         

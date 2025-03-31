@@ -1,0 +1,46 @@
+<div class="row w-100 mx-0">
+    <div class="col-12 text-right my-1 mb-2">
+        <a [routerLink]="['../']">
+            <button class="btn btn-secondary btn-sm">
+                <i class="bi bi-chevron-left"></i>
+                Back
+            </button>
+        </a>
+    </div>
+
+    <h1 class="text-center">List details</h1>
+
+    <p *ngIf="loading">Loading...</p>
+
+    <div *ngIf="!loading">
+        <p *ngIf="!list">Oops! Unable to find the specified list.</p>
+
+        <div class="col-12" *ngIf="list">
+            <hr />
+            <form class="row">
+                <div class="form-group col-4 col-md-2">
+                    <label for="list-id">ID</label> <br />
+                    <input name="list-id" type="number" class="form-control" [(ngModel)]="list.id" readonly />
+                </div>
+                <div class="form-group col-8 col-md-10">
+                    <label for="list-name">Name</label> <br />
+                    <input name="list-name" type="text" class="form-control" [(ngModel)]="list.name" >
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+            </form>
+            <hr />
+
+            <div class="col-12">
+                <h3 class="text-center">Items</h3>
+
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

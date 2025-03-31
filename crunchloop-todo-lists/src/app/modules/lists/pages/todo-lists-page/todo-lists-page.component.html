@@ -5,24 +5,29 @@
     <p *ngIf="loading">Loading...</p>
 
     <div *ngIf="!loading">
+        <!-- Form hide / show management -->
         <div class="col-12 text-end mb-1">
-            <a [routerLink]="['/create']">
-                <button 
-                    class="btn btn-sm" 
-                    [ngClass]="showCreationForm ? 'btn-secondary' : 'btn-primary'" 
-                    (click)="showCreationForm = !showCreationForm"
-                >
-                    <span>{{ showCreationForm ? 'Cancel' : 'Create' }}</span>
-                </button>
-            </a>
+            <button 
+                class="btn btn-sm" 
+                [ngClass]="showCreationForm ? 'btn-secondary' : 'btn-primary'" 
+                (click)="showCreationForm = !showCreationForm"
+            >
+                <span>{{ showCreationForm ? 'Cancel' : 'Create' }}</span>
+            </button>
         </div>
 
+        <!-- Table -->
         <app-todo-lists-table 
             *ngIf="!showCreationForm && lists" 
             (onDelete)="manageDeleteEvent($event)"
             [lists]="lists" 
             class="col-12" 
         />    
-        <app-todo-list-creation-form *ngIf="showCreationForm" (onCreationSubmit)="manageCreateListEvent($event)" />
+
+        <!-- Form -->
+        <app-todo-list-creation-form 
+            *ngIf="showCreationForm" 
+            (onCreationSubmit)="manageCreateListEvent($event)" 
+        />
     </div>
 </div>

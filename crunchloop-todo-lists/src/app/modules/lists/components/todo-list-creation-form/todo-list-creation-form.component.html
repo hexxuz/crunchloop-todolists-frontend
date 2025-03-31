@@ -1,13 +1,15 @@
 <div class="row w-100 mx-0 border p-1">
-    <div class="col-12">
+    <div class="col-12 text-center">
         <h3>List creation</h3>
-        <form>
-            <label for="list-name">Name</label> <br />
-            <input name="list-name" type="text" class="form-control w-50" [(ngModel)]="name">
+        <form class="row">
+            <div class="col-12">
+                <label for="list-name">Name</label> <br />
+                <input name="list-name" type="text" class="form-control" [(ngModel)]="name">
+            </div>
         </form>
     </div>
 
-    <div class="col-12 text-end">
+    <div class="col-12 text-center mt-3">
         <button class="btn btn-primary mx-auto" (click)="onCreateListClick()">Create</button>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TodoListsPageComponent } from './pages/todo-lists-page/todo-lists-page.component';
+import { TodoListDetailsPageComponent } from './pages/todo-list-details-page/todo-list-details-page.component';
 
 const routes: Routes = [
   {
@@ -9,8 +10,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '**',
-    redirectTo: ''
+    path: ':id',
+    component: TodoListDetailsPageComponent
   }
 ];
 
